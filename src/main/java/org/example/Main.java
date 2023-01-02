@@ -15,23 +15,15 @@ public class Main {
         StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 
         Metadata metadata = new MetadataSources(serviceRegistry)
-                .addAnnotatedClass(User.class)
-                .addAnnotatedClass(Passport.class)
-                .addAnnotatedClass(Card.class)
-                .addAnnotatedClass(Sunglass.class)
                 .getMetadataBuilder().build();
 
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        session.save(new User("petya", Gender.MALE, Arrays.asList("java", "js", "html"), new Passport("pihfigdfgsdf"), Arrays.asList(new Card("asyfdyqtfwe7765347"), new Card("87542627")), Arrays.asList(new Sunglass("ray" +
-                "ban"), new Sunglass("oko"))));
-
-        session.getTransaction().commit();
 
 
-        session.close();
+           session.close();
         sessionFactory.close();
 
 
