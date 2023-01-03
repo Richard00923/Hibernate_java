@@ -7,6 +7,9 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.NativeQuery;
+
+import java.util.List;
 
 public  class Main{
     public static void main(String[] args) {
@@ -25,12 +28,14 @@ public  class Main{
 
         SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
         Session session = sessionFactory.openSession();
+            session.beginTransaction();
 
+//            session.save(new User("kakos"));
 
+            session.getTransaction().commit();
 
-
-
-
+        List<User> List = session.createNativeQuery("select * from user", User.class).list();
+        System.out.println(List.toString());
         session.close();
         sessionFactory.close();
 
