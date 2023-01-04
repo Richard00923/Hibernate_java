@@ -1,6 +1,7 @@
 package org.example;
 
 import User.User;
+import User.Passport;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -23,6 +24,7 @@ public  class Main{
         Metadata  metadata =
         new MetadataSources(serviceRegistry)
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Passport.class)
                 .getMetadataBuilder()
                 .build();
 
@@ -30,7 +32,7 @@ public  class Main{
         Session session = sessionFactory.openSession();
             session.beginTransaction();
 
-//            session.save(new User("kakos"));
+
 
             session.getTransaction().commit();
 
